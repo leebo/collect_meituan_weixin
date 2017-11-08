@@ -1,0 +1,3 @@
+first_job:
+  cron: "*/10 * * * *" # execute at every 30 minutes
+  class: ""

@@ -1,0 +1,110 @@
+<div class="panel panel-default">
+  <div class="panel-heading font-bold">
+    查看商家
+  </div>
+  <div class="panel-body">
+    <%= simple_form_for(@merchant, html: { multipart: true, class: "form-horizontal" }) do |f| %>
+      <%= f.input :areaname, label: "地区名", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :avgprice, label: "平均价格", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :avgscore, label: "平均评分", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :catename, label: "分类名", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :channel, label: "channel", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :ctpoi, label: "ctpoi", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :frontimg, label: "frontimg", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :lat, label: "lat", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :lng, label: "lng", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :name, label: "店铺名称", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :poiid, label: "poiid", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :address, label: "地址", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+      <%= f.input :phone, label: "电话", disabled: true %>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="col-sm-10 col-sm-offset-2"></div>
+    <% end %>
+  </div>
+  <% if not @maidans.blank? %>
+   <% index = 0 %>
+    <% @maidans.each do |maidan| %>
+      <div class="panel-heading font-bold">
+        买单列表 <%= index = index + 1 %>
+      </div>
+      <div class="panel-body">
+          <%= simple_form_for(maidan, html: { multipart: true, class: "form-horizontal" }) do |f| %>
+            <%= f.input :content, label: "买单内容", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+          <div class="col-sm-10 col-sm-offset-2"></div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  <% if not @daijinjuans.blank? %>
+    <% index = 0 %>
+    <% @daijinjuans.each do |daijinjuan| %>
+      <div class="panel-heading font-bold">
+      代金券列表 <%= index = index + 1 %>
+      </div>
+      <div class="panel-body">
+          <%= simple_form_for(daijinjuan, html: { multipart: true, class: "form-horizontal" }) do |f| %>
+            <%= f.input :dealid, label: "代金券ID", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :imgurl, label: "图片地址", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :originprice, label: "原价格", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :price, label: "现在价格", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :solds, label: "已售数量", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :stid, label: "stid", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :title, label: "标题", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+          <div class="col-sm-10 col-sm-offset-2"></div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  <% if not @tuangous.blank? %>
+    <% index = 0 %>
+    <% @tuangous.each do |tuangou| %>
+      <div class="panel-heading font-bold">
+      团购列表 <%= index = index + 1 %>
+      </div>
+      <div class="panel-body">
+          <%= simple_form_for(tuangou, html: { multipart: true, class: "form-horizontal" }) do |f| %>
+            <%= f.input :dealid, label: "团购ID", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :imgurl, label: "图片地址", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :originprice, label: "原价格", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :price, label: "现在价格", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :solds, label: "已售数量", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :stid, label: "stid", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+            <%= f.input :title, label: "标题", disabled: true %>
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+          <div class="col-sm-10 col-sm-offset-2"></div>
+          <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="panel-body">
+    <div class="col-sm-10 col-sm-offset-2">
+      <%= link_to "返 回", merchants_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dealid: 1
+  imgurl: MyString
+  originprice: 1
+  price: 1
+  solds: 1
+  stid: MyString
+  title: MyString
+
+two:
+  dealid: 1
+  imgurl: MyString
+  originprice: 1
+  price: 1
+  solds: 1
+  stid: MyString
+  title: MyString

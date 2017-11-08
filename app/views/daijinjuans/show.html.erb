@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+<div class="panel-heading font-bold">
+  查看代金券
+</div>
+<div class="panel-body">
+  <%= simple_form_for(@daijinjuan, html: { multipart: true, class: "form-horizontal" }) do |f| %>
+    <%= f.input :dealid, label: "代金券ID", disabled: true %>
+  <div class="line line-dashed b-b line-lg pull-in"></div>
+    <%= f.input :imgurl, label: "图片地址", disabled: true %>
+  <div class="line line-dashed b-b line-lg pull-in"></div>
+    <%= f.input :originprice, label: "原价格", disabled: true %>
+  <div class="line line-dashed b-b line-lg pull-in"></div>
+    <%= f.input :price, label: "现在价格", disabled: true %>
+  <div class="line line-dashed b-b line-lg pull-in"></div>
+    <%= f.input :solds, label: "已售数量", disabled: true %>
+  <div class="line line-dashed b-b line-lg pull-in"></div>
+    <%= f.input :stid, label: "stid", disabled: true %>
+  <div class="line line-dashed b-b line-lg pull-in"></div>
+    <%= f.input :title, label: "标题", disabled: true %>
+  <div class="line line-dashed b-b line-lg pull-in"></div>
+  <div class="col-sm-10 col-sm-offset-2">
+    <%= link_to "返 回", daijinjuans_path, class: "btn btn-default" %>
+  </div>
+  <% end %>
+</div>
+</div>

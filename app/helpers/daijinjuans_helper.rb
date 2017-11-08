@@ -1,0 +1,2 @@
+module DaijinjuansHelper
+end

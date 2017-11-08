@@ -1,0 +1,48 @@
+<div class="panel panel-default">
+  <form action="/citys" method="get">
+    城市名
+    <input type="text" id='name' name="name" value="<%= params[:name]%>">
+    <input type="submit" name="" value="搜索">
+  </form>
+  <div class="panel-heading">
+      城市列表
+    <div class="pull-right">
+      <%= link_to "一键删除", deleteall_citys_path, class: "btn btn-primary btn-xs btn-danger" %>
+    </div>
+    <div class="pull-right">
+      <%= link_to "采集城市", collectcity_citys_path, class: "btn btn-primary btn-xs" %>
+       &nbsp; &nbsp;
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+        <tr>
+          <th>城市名</th>
+          <th>城市ID</th>
+          <th>城市拼音</th>
+          <th style="width:120px;">创建时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+       <% @citys.each do |city| %>
+      <tr>
+        <td><%= city.name %></td>
+        <td><%= city.ci %></td>
+        <td><%= city.citypinyin %></td>
+        <td><%= city.created_at.strftime("%F %T") %></td>
+        <td><%= link_to '查看', city, class: "btn btn-default btn-xs" %>
+        <%= link_to '修改', edit_city_path(city), class: "btn btn-default btn-xs" %>
+        <%= link_to '删除', city_path(city), method: :delete, class: "btn btn-default btn-xs"  %>
+        <%= link_to '采集', collect_city_path(city.id), class: "btn btn-default btn-xs btn-danger"  %>
+        </td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <footer class="panel-footer">
+    <%= render partial: "shared/admin/paginate", locals: { object: @citys } %>
+  </footer>
+</div>

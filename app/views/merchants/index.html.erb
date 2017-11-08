@@ -1,0 +1,73 @@
+<div class="panel panel-default">
+  <form action="/merchants" method="get">
+    城市名
+    <input type="text" id='cityname' name="cityname" value="<%= params[:cityname]%>">
+    店铺名称
+    <input type="text" id='name' name="name" value="<%= params[:name]%>">
+    商家ID
+    <input type="text" id='id' name="id" value="<%= params[:id]%>">
+    <input type="submit" name="" value="搜索">
+  </form>
+  <div class="panel-heading">
+      商家列表
+    <div class="pull-right">
+      <%= link_to "一键删除", deleteall_merchants_path, class: "btn btn-primary btn-xs btn-danger" %>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>城市名</th>
+          <th>地区名</th>
+          <th>平均价格
+            <a href="/merchants/priceasc">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true">
+            </a>
+            <a href="/merchants/pricedesc">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true">
+            </a>
+          </th>
+          <th>平均评分
+            <a href="/merchants/scoreasc">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true">
+            </a>
+            <a href="/merchants/scoredesc">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true">
+            </a>
+          </th>
+          <th>分类名</th>
+          <th>店铺名称</th>
+          <th>地址</th>
+          <th>电话</th>
+          <th style="width:120px;">创建时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+       <% @merchants.each do |merchant| %>
+      <tr>
+        <td><%= merchant.id %></td>
+        <td><%= merchant.city.name %></td>
+        <td><%= merchant.areaname %></td>
+        <td><%= merchant.avgprice %></td>
+        <td><%= merchant.avgscore %></td>
+        <td><%= merchant.catename %></td>
+        <td><%= merchant.name %></td>
+        <td><%= merchant.address %></td>
+        <td><%= merchant.phone %></td>
+        <td><%= merchant.created_at.strftime("%F %T") %></td>
+        <td><%= link_to '查看', merchant, class: "btn btn-default btn-xs" %>
+        <%= link_to '修改', edit_merchant_path(merchant), class: "btn btn-default btn-xs" %>
+        <%= link_to '删除', merchant_path(merchant), method: :delete, class: "btn btn-default btn-xs"  %>
+        </td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <footer class="panel-footer">
+    <%= render partial: "shared/admin/paginate", locals: { object: @merchants } %>
+  </footer>
+</div>

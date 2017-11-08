@@ -1,0 +1,172 @@
+<aside id="aside" class="app-aside app-aside-fixed hidden-xs bg-dark">
+  <div class="aside-wrap">
+    <div class="navi-wrap">
+      <!-- nav -->
+      <nav ui-nav class="navi clearfix">
+        <ul class="nav">
+          <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>导航</span>
+          </li>
+          <li class="<%= "active" if controller_name == "home" %>">
+            <a href="/admin/home" class="auto">
+              <i class="glyphicon glyphicon-stats icon text-primary"></i>
+              <span class="font-bold">控制面板</span>
+            </a>
+          </li>
+          <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>平台管理</span>
+          </li>
+          <% if current_manager.role == 'super_admin' %>
+            <% if can? :manage, Site %>
+              <li class="<%= "active" if controller_name == "sites" %>">
+                <a href="/admin/sites" class="auto">
+                  <i class="fa fa-institution"></i>
+                  <span>多站点管理</span>
+                </a>
+              </li>
+            <% end %>
+            <% if can? :manage, Manager %>
+              <li class="<%= "active" if controller_name == "managers" %>">
+                <a href="/admin/managers" class="auto">
+                  <i class="fa fa-institution"></i>
+                  <span>管理员帐号</span>
+                </a>
+              </li>
+            <% end %>
+          <% else %>
+            <% if can? :manage, Site %>
+              <li class="<%= "active" if controller_name == "sites" %>">
+                <a href="/admin/sites/<%= current_manager.site.id %>/edit" class="auto">
+                  <i class="fa fa-cog"></i>
+                  <span>基础配置</span>
+                </a>
+              </li>
+            <% end %>
+          <% end %>
+          <% if can? :manage, Bannar %>
+            <li class="<%= "active" if controller_name == "bannars" %>">
+              <a href="/admin/bannars" class="auto">
+                <i class="fa fa-header"></i>
+                <span>首页页头</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, Category %>
+            <li class="<%= "active" if controller_name == "keywords" %>">
+              <a href="/admin/keywords" class="auto">
+                <i class="fa fa-file-text"></i>
+                <span>自动回复配置</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, Category %>
+            <li class="<%= "active" if controller_name == "categories" %>">
+              <a href="/admin/categories" class="auto">
+                <i class="fa fa-file-text"></i>
+                <span>内容管理</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, MerchantAddress%>
+            <li class="<%= "active" if controller_name == "merchant_address" %>">
+              <a href="/admin/merchant_addresses" class="auto">
+                <i class="fa fa-anchor"></i>
+                <span>店铺地址管理</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, Promotion %>
+            <li class="<%= "active" if controller_name == "promotions" %>">
+              <a href="/admin/promotions" class="auto">
+                <i class="fa fa-bullhorn"></i>
+                <span>活动管理</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, Coupon %>
+            <li class="<%= "active" if controller_name == "coupons" %>">
+              <a href="/admin/coupons" class="auto">
+                <i class="glyphicon glyphicon-credit-card"></i>
+                <span>卡券管理</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, VerificationLog %>
+            <li class="<%= "active" if controller_name == "verification_logs" %>">
+              <a href="/admin/verification_logs" class="auto">
+                <i class="fa fa-pencil-square-o"></i>
+                <span>核销记录</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, Consume %>
+            <li class="<%= "active" if controller_name == "consumes" %>">
+              <a href="/admin/consumes" class="auto">
+                <i class="fa fa-pencil-square-o"></i>
+                <span>消费记录</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, RedPacketType %>
+            <li class="<%= "active" if controller_name == "red_packet_types" %>">
+              <a href="/admin/red_packet_types" class="auto">
+                <i class="fa fa-money"></i>
+                <span>红包类型管理</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, RedPacket %>
+            <li class="<%= "active" if controller_name == "red_packets" %>">
+              <a href="/admin/red_packets" class="auto">
+                <i class="fa fa-pencil-square-o"></i>
+                <span>红包领取记录</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, User %>
+            <li class="<%= "active" if controller_name == "users" %>">
+              <a href="/admin/users" class="auto">
+                <i class="fa fa-users"></i>
+                <span>用户管理</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, LevelRuler %>
+            <li class="<%= "active" if controller_name == "level_rulers" %>">
+              <a href="/admin/level_rulers" class="auto">
+                <i class="fa fa-line-chart"></i>
+                <span>等级规则</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, Item %>
+            <li class="<%= "active" if controller_name == "items" %>">
+              <a href="/admin/items" class="auto">
+                <i class="fa fa-gift"></i>
+                <span>积分商城</span>
+              </a>
+            </li>
+          <% end %>
+          <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>公众号功能</span>
+          </li>
+          <li class="<%= "active" if controller_name == "qr_codes" %>">
+            <a href="/admin/qr_codes">
+              <i class="fa fa-qrcode"></i>
+              <span>二维码生成</span>
+            </a>
+          </li>
+          <li class="<%= "active" if controller_name == "wx" %>">
+            <a href="/admin/diymenus">
+              <i class="fa fa-list-alt"></i>
+              <span>自定义菜单</span>
+            </a>
+          </li>
+          </li>
+          <li class="line dk hidden-folded"></li>
+        </ul>
+      </nav>
+      <!-- nav -->
+    </div>
+  </div>
+</aside>

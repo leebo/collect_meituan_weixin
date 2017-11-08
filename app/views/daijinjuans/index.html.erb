@@ -1,0 +1,67 @@
+<div class="panel panel-default">
+  <form action="/daijinjuans" method="get">
+    商家ID
+    <input type="text" id='merchant_id' name="merchant_id" value="<%= params[:merchant_id]%>">
+    <input type="submit" name="" value="搜索">
+  </form>
+  <div class="panel-heading">
+      代金券列表
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+        <tr>
+          <th>商家ID</th>
+          <th>代金券ID</th>
+          <th>原价格
+            <a href="/daijinjuans/originpriceasc">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true">
+            </a>
+            <a href="/daijinjuans/originpricedesc">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true">
+            </a>
+          </th>
+          <th>现在价格
+            <a href="/daijinjuans/priceasc">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true">
+            </a>
+            <a href="/daijinjuans/pricedesc">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true">
+            </a>
+          </th>
+          <th>已售数量
+            <a href="/daijinjuans/soldsasc">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true">
+            </a>
+            <a href="/daijinjuans/soldsdesc">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true">
+            </a>
+          </th>
+          <th>标题</th>
+          <th style="width:120px;">创建时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+       <% @daijinjuans.each do |daijinjuan| %>
+      <tr>
+        <td><%= daijinjuan.merchant_id %></td>
+        <td><%= daijinjuan.dealid %></td>
+        <td><%= daijinjuan.originprice %></td>
+        <td><%= daijinjuan.price %></td>
+        <td><%= daijinjuan.solds %></td>
+        <td><%= daijinjuan.title %></td>
+        <td><%= daijinjuan.created_at.strftime("%F %T") %></td>
+        <td><%= link_to '查看', daijinjuan, class: "btn btn-default btn-xs" %>
+        <%= link_to '修改', edit_daijinjuan_path(daijinjuan), class: "btn btn-default btn-xs" %>
+        <%= link_to '删除', daijinjuan_path(daijinjuan), method: :delete, class: "btn btn-default btn-xs"  %>
+        </td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <footer class="panel-footer">
+    <%= render partial: "shared/admin/paginate", locals: { object: @daijinjuans } %>
+  </footer>
+</div>

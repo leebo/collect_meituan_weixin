@@ -1,0 +1,67 @@
+<div class="panel panel-default">
+  <form action="/tuangous" method="get">
+    商家ID
+    <input type="text" id='merchant_id' name="merchant_id" value="<%= params[:merchant_id]%>">
+    <input type="submit" name="" value="搜索">
+  </form>
+  <div class="panel-heading">
+      团购列表
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+        <tr>
+          <th>商家ID</th>
+          <th>团购ID</th>
+          <th>原价格
+            <a href="/tuangous/originpriceasc">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true">
+            </a>
+            <a href="/tuangous/originpricedesc">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true">
+            </a>
+          </th>
+          <th>现在价格
+            <a href="/tuangous/priceasc">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true">
+            </a>
+            <a href="/tuangous/pricedesc">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true">
+            </a>
+          </th>
+          <th>已售数量
+            <a href="/tuangous/soldsasc">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true">
+            </a>
+            <a href="/tuangous/soldsdesc">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true">
+            </a>
+          </th>
+          <th>标题</th>
+          <th style="width:120px;">创建时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+       <% @tuangous.each do |tuangou| %>
+      <tr>
+        <td><%= tuangou.merchant_id %></td>
+        <td><%= tuangou.dealid %></td>
+        <td><%= tuangou.originprice %></td>
+        <td><%= tuangou.price %></td>
+        <td><%= tuangou.solds %></td>
+        <td><%= tuangou.title %></td>
+        <td><%= tuangou.created_at.strftime("%F %T") %></td>
+        <td><%= link_to '查看', tuangou, class: "btn btn-default btn-xs" %>
+        <%= link_to '修改', edit_tuangou_path(tuangou), class: "btn btn-default btn-xs" %>
+        <%= link_to '删除', tuangou_path(tuangou), method: :delete, class: "btn btn-default btn-xs"  %>
+        </td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <footer class="panel-footer">
+    <%= render partial: "shared/admin/paginate", locals: { object: @tuangous } %>
+  </footer>
+</div>

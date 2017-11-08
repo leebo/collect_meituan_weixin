@@ -1,0 +1,9 @@
+<tr>
+  <td><%= user.email %></td>
+  <td><%= user.created_at.strftime("%F %T")%></td>
+  <td>
+  	<%= link_to "查看", user, class: "btn btn-default btn-xs" %>
+    <%= link_to "修改", edit_user_path(user), class: "btn btn-default btn-xs" %>
+    <%= link_to "删除", user_path(user), method: :delete, class: "btn btn-default btn-xs" %>
+  </td>
+</tr>
