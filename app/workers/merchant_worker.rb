@@ -5,7 +5,7 @@ class MerchantWorker
   def perform(ci)
     logger.info ci
     # 从第0条记录开始取
-  	offset = 0
+    offset = 0
     # 通过请求获得totalcount总记录数
     response = RestClient.post 'http://meishi.meituan.com/i/api/channel/deal/list', {"offset":0,"limit":15,"cateId":1,"lineId":0,"stationId":0,"areaId":0,"sort":"default","deal_attr_23":"","deal_attr_24":"","deal_attr_25":"","poi_attr_20043":"","poi_attr_20033":""}, {cookie: "ci=#{ci}"}
     totalcount = JSON.parse(response.body)["data"]["poiList"]["totalCount"]
@@ -13,13 +13,13 @@ class MerchantWorker
     # 当记录数小于总记录数时继续进行
     while offset < totalcount
       # 取得poiinfos商家信息
-    	response = RestClient.post 'http://meishi.meituan.com/i/api/channel/deal/list', {"offset": offset,"limit":50,"cateId":1,"lineId":0,"stationId":0,"areaId":0,"sort":"default","deal_attr_23":"","deal_attr_24":"","deal_attr_25":"","poi_attr_20043":"","poi_attr_20033":""}, {cookie: "ci=#{ci}"}
-	    poiInfos = JSON.parse(response.body)["data"]["poiList"]["poiInfos"]
-	    poiInfos.each do |poiInfo|
+      response = RestClient.post 'http://meishi.meituan.com/i/api/channel/deal/list', {"offset": offset,"limit":50,"cateId":1,"lineId":0,"stationId":0,"areaId":0,"sort":"default","deal_attr_23":"","deal_attr_24":"","deal_attr_25":"","poi_attr_20043":"","poi_attr_20033":""}, {cookie: "ci=#{ci}"}
+      poiInfos = JSON.parse(response.body)["data"]["poiList"]["poiInfos"]
+      poiInfos.each do |poiInfo|
         # 商家对应的买单列表，从0开始，累加
         index = 0
         # 取得merchant商家信息
-	    	merchant = City.find_by(ci: "#{ci}").merchants.create(areaname: "#{poiInfo['areaName']}", avgprice: "#{poiInfo['avgPrice']}", avgscore: "#{poiInfo['avgScore']}", catename: "#{poiInfo['cateName']}", channel: "#{poiInfo['channel']}", ctpoi: "#{poiInfo['ctPoi']}", frontimg: "#{poiInfo['frontImg']}", lat: "#{poiInfo['lat']}", lng: "#{poiInfo['lng']}", name: "#{poiInfo['name']}", poiid: "#{poiInfo['poiid']}")
+        merchant = City.find_by(ci: "#{ci}").merchants.create(areaname: "#{poiInfo['areaName']}", avgprice: "#{poiInfo['avgPrice']}", avgscore: "#{poiInfo['avgScore']}", catename: "#{poiInfo['cateName']}", channel: "#{poiInfo['channel']}", ctpoi: "#{poiInfo['ctPoi']}", frontimg: "#{poiInfo['frontImg']}", lat: "#{poiInfo['lat']}", lng: "#{poiInfo['lng']}", name: "#{poiInfo['name']}", poiid: "#{poiInfo['poiid']}")
 
         # 得到当前商家的id
         merchantid = merchant.id
@@ -49,9 +49,9 @@ class MerchantWorker
         if not tuangous.blank?
           TuangouWorker.perform_async(tuangous, merchantid)
         end
-    	end
-    	# 每次取得50条记录
-    	offset = offset + 50
-	  end
+      end
+      # 每次取得50条记录
+      offset = offset + 50
+    end
   end
 end

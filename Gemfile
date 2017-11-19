@@ -66,7 +66,3 @@ gem 'sidekiq-cron'
 # 自动化部署
 gem 'mina-puma', require: false
 gem 'mina-sidekiq'
-# 微信公众号消息处理
-gem 'weixin_rails_middleware' , git: "https://github.com/lanrion/weixin_rails_middleware.git"
-# 微信高级接口
-gem 'weixin_authorize'
