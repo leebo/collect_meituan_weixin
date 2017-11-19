@@ -14,7 +14,7 @@ require 'mina_sidekiq/tasks'
 set :application_name, 'collect_meituan'
 set :domain, '114.215.18.66'
 set :deploy_to, '/var/www/collect_meituan'
-set :repository, 'git@github.com:leebo/collect_meituan.git'
+set :repository, 'git@github.com:leebo/collect_meituan_weixin.git'
 set :branch, 'master'
 
 # Optional settings:
