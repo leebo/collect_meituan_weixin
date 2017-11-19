@@ -47,6 +47,8 @@ task :setup do
   # command %{rbenv install 2.3.0 --skip-existing}
   command %(mkdir -p "#{fetch(:deploy_to)}/shared/pids/")
   command %(mkdir -p "#{fetch(:deploy_to)}/shared/log/")
+  command %(touch "#{fetch(:deploy_to)}/shared/config/secrets.yml")
+  command %(touch "#{fetch(:deploy_to)}/shared/config/mongoid.yml")
 end
 
 desc "Deploys the current version to the server."
@@ -57,13 +59,13 @@ task :deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
     invoke :'git:clone'
-    invoke :'sidekiq:quiet'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
     on :launch do
+      invoke :'sidekiq:quiet'
       invoke :'sidekiq:restart'
       invoke :'puma:hard_restart'
     end
