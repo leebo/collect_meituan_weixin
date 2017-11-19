@@ -28,7 +28,7 @@ set :user, 'deployer'          # Username in the server to SSH to.
 # set :shared_dirs, fetch(:shared_dirs, []).push('public/assets')
 # set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
 set :shared_dirs, fetch(:shared_dirs, []).push('public/assets', 'log', 'tmp/pids', 'tmp/sockets')
-set :shared_files, fetch(:shared_files, []).push('config/mongoid.yml', 'config/secrets.yml')
+set :shared_files, fetch(:shared_files, []).push('config/mongoid.yml', 'config/secrets.yml', 'config/puma.rb')
 
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
@@ -49,6 +49,7 @@ task :setup do
   command %(mkdir -p "#{fetch(:deploy_to)}/shared/log/")
   command %(touch "#{fetch(:deploy_to)}/shared/config/secrets.yml")
   command %(touch "#{fetch(:deploy_to)}/shared/config/mongoid.yml")
+  command %(touch "#{fetch(:deploy_to)}/shared/config/puma.yml")
 end
 
 desc "Deploys the current version to the server."
@@ -74,7 +75,5 @@ task :deploy do
   # you can use `run :local` to run tasks on local machine before of after the deploy scripts
   # run(:local){ say 'done' }
 end
-
-# For help in making your deploy script, see the Mina documentation:
-#
-#  - https://github.com/mina-deploy/mina/tree/master/docs
+task :console => :environment do
+end
