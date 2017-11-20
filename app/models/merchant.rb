@@ -1,7 +1,6 @@
 class Merchant
   include Mongoid::Document
   include Mongoid::Timestamps
-  paginates_per 5
   # 区域名
   field :areaname, type: String
   # 平均价格

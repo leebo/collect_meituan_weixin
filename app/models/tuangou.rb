@@ -1,7 +1,6 @@
 class Tuangou
   include Mongoid::Document
   include Mongoid::Timestamps
-  paginates_per 5
   # 代金券ID
   field :dealid, type: Integer
   # 图片地址

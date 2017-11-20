@@ -1,7 +1,6 @@
 class City
   include Mongoid::Document
   include Mongoid::Timestamps
-  paginates_per 5
   # 城市id
   field :ci, type: Integer
   # 城市名
