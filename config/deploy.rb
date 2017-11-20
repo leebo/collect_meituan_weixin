@@ -75,5 +75,3 @@ task :deploy do
   # you can use `run :local` to run tasks on local machine before of after the deploy scripts
   # run(:local){ say 'done' }
 end
-task :console => :environment do
-end
